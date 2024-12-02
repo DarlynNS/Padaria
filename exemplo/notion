@@ -1,0 +1,75 @@
+//Exemplo 1
+<?php
+ $nome = $_POST['nome'];
+ $sobrenome = $_POST['sobrenome'];
+ $idade = $_POST['idade'];
+ $matricula = $_POST['matricula'];
+ $datanascimento = $_POST['datanascimento'];
+
+
+ $strconexao = mysqli_connect('localhost', 'root','','aula01php');
+
+ if(!$strconexao){
+    die('Não foi possivel conectar ao banco de dados');
+ }
+
+    $sql =" INSERT INTO alunos (nome, sobrenome, idade, matricula, datanascimento) VALUES ('$nome', '$sobrenome', '$idade', '$matricula', '$data_nascimento')";
+
+    mysqli_query($strconexao, $sql) or die("Erro ao cadastrar");
+
+
+ /*echo 'Conexão realizada com sucesso!!!<br><br>';
+ echo 'Nome do Aluno: '.$nome. ' '.$sobrenome. '<br>';
+ echo 'Idade: '.$idade.'<br>';
+ echo 'Matricula: '.$matricula.'<br>';
+ echo 'Data de Nascimento: '.$datanascimento.'<br>';*/
+
+ mysqli_close($strconexao);
+
+ ?>
+
+//Exemplo 2
+<?php
+ $placa = $_POST['placa'];
+ $modelo = $_POST['modelo'];
+ $marca = $_POST['marca'];
+ $cor = $_POST['cor'];
+ $ano = $_POST['ano'];
+ $ar_condicionado = $_POST['ar_condicionado'];
+ $direcao_hidraulica = $_POST['direcao_hidraulica'];
+ $direcao_eletrica = $_POST['direcao_eletrica'];
+ $qntd_portas = $_POST['qntd_portas'];
+ $tipo_veiculo = $_POST['tipo_veiculo'];
+ $importado = $_POST['importado'];
+ $cambio = $_POST['cambio'];
+ $km_atual = $_POST['km_atual'];
+ $combustivel = $_POST['combustivel'];
+
+ $strconexao = mysqli_connect('localhost','root','','vendaveiculos');
+
+ if(!$strconexao){
+    die('Nao foi possivel conectar ao banco de dados');
+ }
+
+ if($ano <= 1999){
+   $sql =" INSERT INTO veiculos_decada90 (placa, modelo, marca, cor, ano, ar_condicionado, direcao_hidraulica, direcao_eletrica, qntd_portas, tipo_veiculo, importado, cambio, km_atual, combustivel) VALUES ('$placa', 
+   '$modelo','$marca', '$cor', '$ano', '$ar_condicionado', '$direcao_hidraulica', '$direcao_eletrica', '$qntd_portas', '$tipo_veiculo', '$importado', '$cambio', '$km_atual', '$combustivel')";
+ }
+ elseif($ano >=2000 && $ano <= 2009) {
+   $sql =" INSERT INTO veiculos_decada2000 (placa, modelo, marca, cor, ano, ar_condicionado, direcao_hidraulica, direcao_eletrica, qntd_portas, tipo_veiculo, importado, cambio, km_atual, combustivel) VALUES ('$placa', 
+   '$modelo','$marca', '$cor', '$ano', '$ar_condicionado', '$direcao_hidraulica', '$direcao_eletrica', '$qntd_portas', '$tipo_veiculo', '$importado', '$cambio', '$km_atual', '$combustivel')";
+ }
+elseif($ano >= 2010 && $ano <=2019){
+   $sql =" INSERT INTO veiculos_decada2010 (placa, modelo, marca, cor, ano, ar_condicionado, direcao_hidraulica, direcao_eletrica, qntd_portas, tipo_veiculo, importado, cambio, km_atual, combustivel) VALUES ('$placa', 
+   '$modelo','$marca', '$cor', '$ano', '$ar_condicionado', '$direcao_hidraulica', '$direcao_eletrica', '$qntd_portas', '$tipo_veiculo', '$importado', '$cambio', '$km_atual', '$combustivel')";
+}
+else{
+   $sql =" INSERT INTO veiculos_decada2020 (placa, modelo, marca, cor, ano, ar_condicionado, direcao_hidraulica, direcao_eletrica, qntd_portas, tipo_veiculo, importado, cambio, km_atual, combustivel) VALUES ('$placa', 
+   '$modelo','$marca', '$cor', '$ano', '$ar_condicionado', '$direcao_hidraulica', '$direcao_eletrica', '$qntd_portas', '$tipo_veiculo', '$importado', '$cambio', '$km_atual', '$combustivel')";
+}
+
+    mysqli_query($strconexao, $sql) or die("Erro ao cadastrar");
+
+ mysqli_close($strconexao);
+
+ ?>
